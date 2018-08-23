@@ -1,0 +1,213 @@
+%%%% LyX barruan kargatu beharreko moduluak:
+% * Hizkuntzalaritza
+% * ToDo notes (igual kendu), norberan buruari ipinteko notak dira
+% * Natbibapa Horrek kargaten dau apacite NatBib-eko aukerakin (autor, urtea) etab
+
+
+\usepackage[dvipsnames]{xcolor}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  COMENT/IRUZKINA testuingurukoak imprimatzeko     %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{colortbl, tabularx}
+\@ifundefined{comment}{}% do nothing if the comment environment is not defined
+  {% redefine the comment environment if it is defined
+   \renewenvironment{comment}
+    {% replaces \begin{comment}
+     \par\medskip\noindent
+     \tabularx{\textwidth}{|>{\columncolor[gray]{0.95}}X|}
+      %\arrayrulecolor{blue}
+     \hline
+     \emph{\textbf{Oharra:}}% You can use any other text instead of "Comment:" or leave it
+    }
+    {% replaces \end{comment}
+     \endtabularx
+    %\color{blue}
+    \hrule %height 1pt
+     \par\medskip
+    }
+  }%
+
+
+%%%%%%%%%%%%%%%%%%%%
+%%%% GITXIENEKUAK %%%%%%%
+%%%%%%%%%%%%%%%%%%%%
+
+%APROBAK ETTEKO TESTU GEHITZEKO
+\usepackage{lipsum} 
+
+%ARBOLA LINGUSTIKUK EGIN AHAL IXATEKO
+\usepackage{qtree} 
+
+%tracking/interletraua egokitu ahal izateko
+\usepackage[letterspace=75]{microtype}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%HONEN BITARTEZ IPINI LEI ZEIN (nozko) BERTSINOGAZ NABILEN %
+%%%%% 	BEHEAN DAGOZ SARTZEKO KOMANDUAK 	   %%%%%%%%%
+%%%%% HAMEN SORTZEN DA AGERTZEKO FORMATU 	     %%%%%%%
+
+% Paketea gehitu
+\usepackage{datetime} 	%EGUNA ZENBAKIZ AGERTZEKO
+  %Nahi dotan formatua definidu
+   \newdateformat{dashdate}{	%KOMANDUN IXENA
+        \twodigit{\THEYEAR}-\twodigit{\THEMONTH}-\twodigit{\THEDAY}} % KOMANDUN 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                            KOMAoptions                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\KOMAoptions{%cleardoublepage=empty,
+                             headings=twolinechapter,
+                             chapterprefix=true
+                               }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%         \setkomafont{element }{commands }    			%
+%       \addtokomafont{element }{commands }  			%
+%                \usekomafont{element }                      	%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%ATALA%
+%\renewcommand*{\partpagestyle}{empty} %ZENBAKIJA KENDU ATALARI
+
+%%% ROMAN TESTUINGURUAK %%%
+% part TESTUINGURUA ALDATZEKO %
+\renewcommand*{\partformat}
+                            {~\thepart~{\ zatia}%
+                            \\
+                            \color{black}%
+                                         {\rule%[22pt]
+                                               {\linewidth}%luzeri
+                                                           {1pt}% zabaleri originala 0.4, baina hain zabalduta...
+                                                           }%
+                                                }
+                                                
+\addtokomafont{partnumber}
+                                  {%\linespread{-5}%LERROARTEA GITXITTU, setspace PAKETEA
+                                    \color{red!60!-white!!}
+                                    \rmfamily\Large
+                                    } % 
+                                    
+\addtokomafont{part}{%\linespread{-10}%honetan ez dabil
+                                            \color{black!75!} 
+%                                            \lsstyle %tracking-a zabalduta, Microtype paketea
+                                            \scshape%versalles
+                                            \bfseries
+                                            \rmfamily
+                                            \Huge} %Titulua serif eta bold
+
+\renewcommand*{\chapterformat}
+                              {\Large{                                        \color{black!60!}
+                                    \thechapter\color{black!40!}
+    . kapitulua%~\chaptername
+                                             } %Zarratu
+                              }%Zarratu
+
+\addtokomafont{chapter}{%\bfseries
+                        \lsstyle %tracking-a zabalduta, Microtype paketea
+                        \linespread{0}%LERROARTEA GITXITTU, setspace PAKETEA
+                        \Huge
+                        \raggedleft %ESKUMATARA
+                                     }%Zarratu
+
+\addtokomafont{paragraph}{\itshape}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%								%
+%                                    KOMAtzekuk                 %                      %								%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%TITULU GUZTIAK
+ \renewcommand{\sectfont}{\rmfamily} %TITULU GUZTIJJAK roman
+
+%% TESTUINGURUKO LEHENENGOARI ORRI ZENBAKIA KENDU
+\renewcommand*{\chapterpagestyle}{empty} %ZENBAKIJA KENDU KAPITULUARI
+\renewcommand*{\partpagestyle}{empty} %ZENBAKIJA KENDU ATALARI
+
+
+%ALBO OHARRAK LETRA ETZUNAZ ETA TXIKIXEAGUAZ
+\let\oldmarginpar\marginpar
+\renewcommand{\marginpar}[1]{\oldmarginpar{\small{\textit{{#1}}}}}
+
+%% PARAGRAFUETAN %%
+% SANGRIA SORTZEKO LEHENENGUA EZ DIRIN PARAGRAFUETAN
+\setlength{\parindent}{0.5cm} %SANGRIJJIA SORTZEKO
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                            scrpage2                   %
+%           Header ta footer tuneatzeko             	%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{scrpage2}
+
+\pagestyle{scrheadings}
+  \clearscrheadfoot
+    \ihead{\color{black!70!}\textls[50]{\headmark}} %barruak
+    \ohead[\pagemark]{\pagemark}%kanpuak
+
+\renewcommand*{\pagemark}{%
+  \usekomafont{pagenumber}%
+     \ifodd\value{page}%
+     \makebox[0 ex][l]%honek ipiniten dau testu kajin kanpoko partin %[\marginparwidth][l]
+                        {\pnumbar\enskip\thepage}%
+     \else
+     \makebox[0 ex][r]%honek ipiniten dau testu kajin kanpoko partin%[\marginparwidth][r]
+                        {\thepage\enskip\pnumbar}%
+     \fi
+}
+
+\newcommand*{\pnumbar}{%
+    \raisebox{0pt}[\ht\strutbox][\dp\strutbox]{%
+      \color{gray}%
+      \rule[-\dp\strutbox]
+             {2.5pt}%marraren lodiera
+                         {1.1\baselineskip}%
+    }%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% BERTSINOIA zein dan   %%%%
+%%%% behean agertzeko     %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cfoot	% Azpian erdijan zer gehitu
+   { \color{gray}  %GRIXEZ AGERTUKO DA
+       {\ttfamily	 %IDAZMAKINAKO LETRIAZ
+          \scriptsize 	%LETRA TXIKIJJAZ
+          Bertsioa: \dashdate\today, \currenttime}} % TESTUA "Bertsioa: 2014-02-02, 17:06" FORMATUN
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%     EUSKARATZEKO     %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ALDAKETAK
+\renewcaptionname{basque}{\contentsname}{Aurkibidea}% "Aurkibidea", "Gaien Aurkibidea"REN ORDEZ
+\renewcaptionname{basque}{\listtablename}{Taulen zerrenda}
+\renewcaptionname{basque}{\listfigurename}{Irudien zerrenda}
+\renewcaptionname{basque}{\bibname}{Erreferentziak}
+%\renewcaptionname{basque}{\partname}{} %HONEK EZABATZEN DEUTSO "atala" BERBIA, BESTELA: "Atala 1"
+\renewcaptionname{basque}{\chaptername}{}% "Kapitulu berbia kendu dot, head-en ez daiten agertu
+\renewcaptionname{basque}{\tablename}{taula} % letra xehez
+\renewcaptionname{basque}{\figurename}{irudia}  % letra xehez
+
+%Taulak eta irudijak atzekoz aurrera aldatu
+\makeatletter 
+\renewcommand{\fnum@figure}{\thefigure.~\figurename}
+\renewcommand{\fnum@table}{\thetable.~\tablename}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%      AURKIBIDEAK-ETA EGITEKO     %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tocstyle}
+\usetocstyle[tocgraduated]{nopagecolumn}
+
+%% Bibliografijia aurkibidian zenbakiaz agertzeko da, baina ez dau bihar, antza
+%% Pakete honek eragiten dau Bibliografiak ez urteti indentaduagaz
+\usepackage[numbib,nottoc,notlot,notlof] %Kendu aurkibideak aurkibidetik (gaiak, taulak eta irudiak)
+                        {tocbibind} %Paketia bera
+
+
+% Aipuak italikan
+\AtBeginEnvironment{quotation}{\itshape}

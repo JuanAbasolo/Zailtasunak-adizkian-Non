@@ -1,0 +1,18 @@
+\usepackage[basque]{babel}
+\usepackage{apacite}
+\usepackage{eso-pic,graphicx,transparent} % Zirriborroa dala erakusteko
+\bibliographystyle{apacite}
+
+% ALDAKETAK
+
+% HONEK HUTS EGITEN DAU, BAINA BIHAR DA.
+% "x. Taula" eta "x. Irudia"-ren ordez, "x. taula" eta "x. irudia"
+%\renewcaptionname{basque}{\tablename}{taula}
+%\renewcaptionname{basque}{\figurename}{irudia}
+
+%Taulak eta irudijak atzekoz aurrera aldatu
+\makeatletter 
+\renewcommand{\fnum@figure}{\thefigure.~\figurename}
+\renewcommand{\fnum@table}{\thetable.~\tablename}
+\makeatother
+
