@@ -3,8 +3,8 @@ title: "Aditz jokatuan non ditu zailtasunak euskara H2 ikastun berantiarrak?"
 author: "Juan Abasolo"
 date: "UPV/EHU, EUDIA taldea"
 output:
-  html_document:
-    df_print: paged
+  md_document: 
+    variant: markdown_github
   pdf_document:
     includes:
       in_header: estiloa.sty
@@ -18,6 +18,12 @@ output:
       in_header: estiloa.sty
   odt_document:
     reference_odt: ./Txantiloiak/EUDIA_Txantiloia_RMarkdown.odt
+  html_document:
+    theme: yeti
+    df_print: paged
+    toc: yes
+    toc_float: true
+    code_folding: hide
 bibliography: bibliography.bib
 keywords: zailtasunak, euskara H2 berantiarra, adizkia, banaketa, explorazio (?!)
   ikerketa
