@@ -3,27 +3,18 @@ title: "Aditz jokatuan non ditu zailtasunak euskara H2 ikastun berantiarrak?"
 author: "Juan Abasolo"
 date: "UPV/EHU, EUDIA taldea"
 output:
-  md_document: 
-    variant: markdown_github
-  pdf_document:
-    includes:
-      in_header: estiloa.sty
-  bookdown::word_document2:
-      reference_docx: ./Txantiloiak/EUDIA_Txantiloia_RMarkdown.docx    
-  word_document:
-      reference_docx: ./Txantiloiak/EUDIA_Txantiloia_RMarkdown.docx
   bookdown::pdf_document2:
     toc: false
     includes:
       in_header: estiloa.sty
-  odt_document:
-    reference_odt: ./Txantiloiak/EUDIA_Txantiloia_RMarkdown.odt
-  html_document:
+  bookdown::html_document2:
     theme: yeti
     df_print: paged
     toc: yes
     toc_float: true
-    code_folding: hide
+    number_sections: false
+  bookdown::word_document2:
+      reference_docx: ./Txantiloiak/EUDIA_Txantiloia_RMarkdown.docx    
 bibliography: bibliography.bib
 keywords: zailtasunak, euskara H2 berantiarra, adizkia, banaketa, explorazio (?!)
   ikerketa
@@ -127,7 +118,7 @@ EGA azterketako idatziaren analisian Pello Esnalek oso errakuntza gutxi aurkitu 
 
 Esnalek egindako ikerketa lana idatzitakoaren analisian oinarritu zen, euskara H1 ala H2 zen sailkatu ere egin barik. Idatzitakoaren analisiak, zailtasunen continuumean, errakuntzen berri baino ezin lezake eman, zalantza eta birformulatze guztiak amaituak baitira idatzia amaitutakoan. Horra ahozko jardunaren analisiak duen azalpen ahalmen handiagoa.
 
-### Corpusaren ezaugarriak
+## Corpusaren ezaugarriak
 
 Gorago esan bezala, lan honetarako Abasolo 2017 laneko datuak erabili dira. Datuak urtebetean zehar batu ziren, 2014-2015 ikasturtean. Horretarako ikastunari grabatu zitzaizkion zenbait ahozko ariketa, aurrez prestatutako monologoa egitean dautzana.
 
