@@ -28,6 +28,9 @@ abstract: Artikulu honetan aurkezten da euskara ikastun baten berbazko ekoizpena
   inguruan multzokatzen direla aurkitu dugu.
 ---
 
+\renewcommand{\figurename}{irudia} % Euskeratzean, letra larriz ez agertzeko
+\renewcommand{\tablename}{taula} % Euskeratzean, letra larriz ez agertzeko
+
 \AddToShipoutPictureFG{
   \AtPageCenter{% or \AtTextCenter
     \makebox[0pt]{\rotatebox[origin=c]{45}{%
